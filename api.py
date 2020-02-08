@@ -1,29 +1,68 @@
 import requests
-import jason
-import django
+import json
+import numpy as np
+import pandas as pd
 
-def Flight(d):
-    ce = 406.4 * d
-    return ce
+URL = "http://transportapi.com/v3/uk/places.json?&type=train_station&app_id=d9d3eca0&app_key=cfd4e8f645741a3d30ac1c0d776458c6"
 
+location1 = "euston"
+location2 = "edinburgh"
 
-def distance(locA[], locB[]):
-    R = 6373.0 #radius of earth
+PARAMS = {'query':location}
+PARAMS2 = {'query':location2}
 
+def distair(locA, locB): #Working out the distance by air
+    R = 6373.0
 
-    lat1 = math.radians(52.2296756)  ## need to figure out how to get coordinates
-    lon1 = math.radians(21.0122287)
-    lat2 = math.radians(52.406374)
-    lon2 = math.radians(16.9251681)
+    
+
+    lat1 = data['member'][0]['latitude']
+    lon1 = data['member'][0]['longitude']
+    lat2 = data2['member'][0]['latitude']
+    lon2 = data2['member'][0]['longitude']
 
     dlon = lon2 - lon1
-    change in coordinates
 
     dlat = lat2 - lat1
 
     a = math.sin(dlat / 2)**2 + math.cos(lat1) * math.cos(lat2) * math.sin(dlon / 2)**2
 
     c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
-    distance = R * c
+    distancet = R * c
 
-    return distance
+
+def disttrain(locA, locB): #Working out the distance obn ground
+    R = 6373.0
+
+    req = request.get(url=URL, params=PARAMS)
+    req2 = request.get(url=URL, params=PARAMS2)
+    data = req.json
+    data2 = req2.json
+
+    lat1 = data['member'][0]['latitude']
+    lon1 = data['member'][0]['longitude']
+    lat2 = data2['member'][0]['latitude']
+    lon2 = data2['member'][0]['longitude']
+
+    dlon = lon2 - lon1
+
+    dlat = lat2 - lat1
+
+    a = math.sin(dlat / 2)**2 + math.cos(lat1) * math.cos(lat2) * math.sin(dlon / 2)**2
+
+    c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
+    distancet = R * c
+
+return distancet
+
+        flightce = 406.4 * distance
+
+        traince = 65.6 * distancet
+
+        busce = 166.4 * distancet
+
+        Tubece = 195 * distancet
+
+        Coachce = 43.2 * distancet
+
+        Carce = 198.4 * distancet
