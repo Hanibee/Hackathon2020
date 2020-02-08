@@ -14,7 +14,8 @@ PARAMS2 = {'query':location2}
 def distair(locA, locB): #Working out the distance by air
     R = 6373.0
 
-    
+    df = pd.read_excel(r/Users/daishisuzuki/Desktop/airport.xlsx)
+    print(df)
 
     lat1 = data['member'][0]['latitude']
     lon1 = data['member'][0]['longitude']
