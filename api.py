@@ -49,9 +49,9 @@ def distair(locA, locB): #Working out the distance by air
 
 req = requests.get(url=URL, params=PARAMS)
 data = req.json()
-dat = data['routes'][0]['route_parts'][0]['coordinates'][0]
-print ("%s"
-        %(dat))
+#dat = data['routes'][0]['route_parts'][0]['coordinates'][0]
+#print ("%s"
+#        %(dat))
 
 def disttrain(locA, locB):
     R = 6373.0
@@ -81,7 +81,7 @@ def disttrain(locA, locB):
                     c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
                     dis = R * c
                     d = d + dis
-    
+
     return distance
 
 
